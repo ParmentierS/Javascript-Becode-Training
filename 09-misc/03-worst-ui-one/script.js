@@ -10,5 +10,18 @@
 // You will have time to focus on it later.
 
 (() => {
-    // your code here
+    const slider = document.getElementById("slider");
+    const target = document.getElementById("target");
+    //let value = slider.getAttribute("value"); //doesn't work it stays fixed to 46000000
+    let value = slider.value;
+    target.innerHTML="+"+value;
+    console.log(value);
+    const changeValue = function(event)
+    {
+        //value = slider.getAttribute("value"); //doesn't work it stays fixed to 46000000
+        value = slider.value;
+        target.innerHTML="+"+value;
+    }
+    slider.addEventListener("input",changeValue)
+
 })();

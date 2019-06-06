@@ -10,5 +10,43 @@
 // You will have time to focus on it later.
 
 (() => {
-    // your code here
+    let counter=0;
+    function useFetch()
+    {
+        console.log("etape avant requete",counter++);
+        const request = new Request("http://localhost:3000/heroes", {method: 'GET'});//renvoie une Promesse
+        console.log("etape après requete",counter++);
+        const URL = request.url;
+        const method = request.method;
+        const credentials = request.credentials;
+        const bodyUsed = request.bodyUsed;
+        console.log("etape après stockage des attributs",counter++);
+        fetch(request).then(response => 
+            {
+                console.log("etape dans la première fonction réponse",counter++);
+                if (response.status === 200) 
+                {
+                    return response.json();
+                } 
+                else 
+                {
+                    throw new Error('Something went wrong on api server!');
+                }
+            })
+        .then(response => 
+            {
+                console.log("etape dans la deuxième fonction réponse",counter++);
+                console.debug(response);
+                // ...
+            })
+        .catch(error => 
+            {
+                console.log("etape dans la fonction d'erreur",counter++);
+                console.error(error);
+            });
+            console.log("etape après la chaine de promesse",counter++);
+    }
+    document.getElementById("run").addEventListener("click",useFetch)
+    
+
 })();

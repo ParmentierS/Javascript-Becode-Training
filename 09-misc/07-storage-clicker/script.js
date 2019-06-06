@@ -10,5 +10,19 @@
 // You will have time to focus on it later.
 
 (() => {
-    // your code here
+    const target = document.getElementById("target");
+    if (localStorage.clickcount) 
+    {
+        target.innerHTML = localStorage.clickcount;
+    } 
+    else
+    {
+        localStorage.clickcount=0;
+    }
+    function incrementClick()
+    {
+        localStorage.clickcount = Number(localStorage.clickcount) + 1;
+        target.innerHTML = localStorage.clickcount;
+    }
+    document.getElementById("increment").addEventListener("click",incrementClick)
 })();

@@ -10,5 +10,25 @@
 // You will have time to focus on it later.
 
 (() => {
-    // your code here
+    let condition=true;
+    let counter=0;
+    const randomNumber=Math.ceil(Math.random()*100);
+    while(condition)
+    {
+        counter++;
+        const guessNumber= +prompt("Devinez le nombre");
+        if(guessNumber>randomNumber)
+        {
+            alert("C'est moins!")
+        }
+        else if(guessNumber<randomNumber)
+        {
+            alert("C'est plus!")
+        }
+        else
+        {
+            alert("Vous avez trouvé le nombre en "+counter+" essais, félicitations !");
+            condition=false;
+        }
+    }
 })();

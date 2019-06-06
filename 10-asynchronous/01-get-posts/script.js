@@ -10,5 +10,18 @@
 // You will have time to focus on it later.
 
 (() => {
-    // your code here
+
+    function callback(stupiderror,articleTab)
+    {
+        for(index in articleTab)
+        {
+            console.log(articleTab[index]);
+        }
+    }
+    function useGetPost(event)
+    {
+        window.lib.getPosts(callback) 
+    }
+    document.getElementById("run").addEventListener("click",useGetPost);
+
 })();

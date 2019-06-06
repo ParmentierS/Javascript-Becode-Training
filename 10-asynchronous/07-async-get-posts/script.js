@@ -10,5 +10,24 @@
 // You will have time to focus on it later.
 
 (() => {
-    // your code here
+    function displayArticles(articleTab)
+    {
+        for(index in articleTab)
+        {
+            console.log(articleTab[index]);
+        }
+    }
+    function handleError(error)
+    {
+        console.error(error);
+        console.error("Je suis dans la fonction handleError");
+    }
+    async function useGetPost()
+    {
+        const promise1=window.lib.getPosts();
+        await promise1.then(displayArticles,handleError);
+        console.log("On a attendu que la promesse s'exécute")
+
+    }
+    document.getElementById("run").addEventListener("click",useGetPost);
 })();
