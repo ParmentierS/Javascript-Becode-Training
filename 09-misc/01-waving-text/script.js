@@ -11,7 +11,8 @@
 
 (() => {
     //found on the web, should be useful but doesn't work
-    function createCSSSelector (selector, style) 
+
+    /*function createCSSSelector (selector, style) 
     {
         if (!document.styleSheets) return;
         if (document.getElementsByTagName('head').length == 0) return;
@@ -86,6 +87,12 @@
             }
             styleSheet.insertRule(selector + '{' + style + '}', styleSheetLength);
         }
+    }*/
+
+    /*sleep function with a Promise */
+    function sleep(ms) 
+    {
+        return new Promise(resolve => setTimeout(resolve, ms));
     }
 
     //my own function that works for now
@@ -100,53 +107,76 @@
         console.log(styleSheetElement);
 
     } 
-    createCSSSelector2('.taille5', 'font-size:50px');
-    createCSSSelector2('.taille4', 'font-size:40px');
-    createCSSSelector2('.taille3', 'font-size:30px');
-    createCSSSelector2('.taille2', 'font-size:20px');
-    createCSSSelector2('.taille1', 'font-size:10px');
-
-    const target = document.getElementById("target");
-    const text = target.innerHTML;
-    console.log(text);
-    target.innerHTML="";
-    //const textNode = document.createTextNode(text);
-    //target.appendChild(textNode);
-    //const paragraph = document.createElement("P");
-    for(let i=0;i<text.length;i++)
+    async function main(waveText="", timer=500)
     {
-        const letterContainer = document.createElement("SPAN");
-        target.appendChild(letterContainer);
-        letterContainer.innerHTML=text[i];
-        switch (i%8) {
-            case 0:
-                letterContainer.classList.add("taille1");
-                break;
-            case 1:
-                letterContainer.classList.add("taille2");
-                break;
-            case 2:
-                letterContainer.classList.add("taille3");
-                break;
-            case 3:
-                letterContainer.classList.add("taille4");
-                break;
-            case 4:
-                letterContainer.classList.add("taille5");
-                break;
-            case 5:
-                letterContainer.classList.add("taille4");
-                break;
-            case 6:
-                letterContainer.classList.add("taille3");
-                break;
-            case 7:
-                letterContainer.classList.add("taille2");
-                break;
-            default:
-                break;
+        createCSSSelector2('.taille5', 'font-size:50px');
+        createCSSSelector2('.taille4', 'font-size:40px');
+        createCSSSelector2('.taille3', 'font-size:30px');
+        createCSSSelector2('.taille2', 'font-size:20px');
+        createCSSSelector2('.taille1', 'font-size:10px');
+
+        /*initalize values for the first loop iteration*/
+        const target = document.getElementById("target");
+        let text;
+        if(waveText.length==0)
+        {
+             text = target.innerHTML;
+        }
+        else
+        {
+            text = waveText;
+        }
+        console.log(text);
+        let animationCounter=0;
+        //const textNode = document.createTextNode(text);
+        //target.appendChild(textNode);
+        //const paragraph = document.createElement("P");
+        while(true)
+        {
+            target.innerHTML="";
+            for(let i=0;i<text.length;i++)
+            {
+                const letterContainer = document.createElement("SPAN");
+                target.appendChild(letterContainer);
+                letterContainer.innerHTML=text[i];
+                switch ((i+animationCounter)%8) {
+                    case 0:
+                        letterContainer.classList.add("taille1");
+                        break;
+                    case 1:
+                        letterContainer.classList.add("taille2");
+                        break;
+                    case 2:
+                        letterContainer.classList.add("taille3");
+                        break;
+                    case 3:
+                        letterContainer.classList.add("taille4");
+                        break;
+                    case 4:
+                        letterContainer.classList.add("taille5");
+                        break;
+                    case 5:
+                        letterContainer.classList.add("taille4");
+                        break;
+                    case 6:
+                        letterContainer.classList.add("taille3");
+                        break;
+                    case 7:
+                        letterContainer.classList.add("taille2");
+                        break;
+                    default:
+                        break;
+                }
+            }
+            animationCounter = (animationCounter+1)%text.length
+            await sleep(timer);
         }
     }
+
+    main("AZERTYUIOPQSDFGHJKLMWXCVBN\nAZERTYUIOPQSDFGHJKLMWXCVBN\nAZERTYUIOPQSDFGHJKLMWXCVBN\n"
+        +"AZERTYUIOPQSDFGHJKLMWXCVBN\nAZERTYUIOPQSDFGHJKLMWXCVBN\nAZERTYUIOPQSDFGHJKLMWXCVBN\n"
+        +"AZERTYUIOPQSDFGHJKLMWXCVBN\nAZERTYUIOPQSDFGHJKLMWXCVBN\nAZERTYUIOPQSDFGHJKLMWXCVBN\n",50);
+    
     //target.appendChild(paragraph);
     //console.log(textNode);
     //console.log(textNode.style);
