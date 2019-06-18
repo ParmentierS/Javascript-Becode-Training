@@ -35,6 +35,8 @@
         console.log(person.name);
         person.name ="Afro Man";
         console.log(person.name);
+        person.name="Machin";
+        console.log(person.name);
     }
     document.getElementById("run").addEventListener("click",setget);
 })();

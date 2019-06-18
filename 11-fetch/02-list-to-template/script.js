@@ -45,7 +45,7 @@
             //si oui on se sert du template
             const template = document.getElementById("tpl-hero");
             const olTarget = document.getElementById("target");
-            for(index in heroes)
+            for(index in heroes) //for (currentHero of heroes)
             {
                 if(heroes[index].id === undefined)
                 {
@@ -55,14 +55,17 @@
                 {
                     const clone=document.importNode(template.content, true);
                     const currentHero=heroes[index];
+
                     const liHero=clone.querySelector(".hero");
                     const strongName = clone.querySelector(".name");
                     const emAlter =clone.querySelector(".alter-ego");
                     const pPowers =clone.querySelector(".powers");
+
                     strongName.innerHTML =currentHero.name;
                     emAlter.innerHTML=currentHero.alterEgo;
                     pPowers.innerHTML=currentHero.abilities;
                     olTarget.appendChild(liHero);
+
                     console.log(index);
                     console.log(currentHero);
                     console.log(clone);

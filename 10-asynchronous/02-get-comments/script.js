@@ -15,11 +15,11 @@
         for(index in articleTab)
         {
             window.lib.getComments(index,callback2(articleTab,index));
-            //console.log("article pas encore modifié",articleTab[index]);//la magie de l'asynchrone qui prend du temps à s'exécuter
+            console.log("article pas encore modifié",articleTab[index]);//la magie de l'asynchrone qui prend du temps à s'exécuter
         }
         for(index in articleTab)
         {
-            //console.log("article pas encore modifié",articleTab[index]);//la magie de l'asynchrone qui prend du temps à s'exécuter
+            console.log("article pas encore modifié",articleTab[index]);//la magie de l'asynchrone qui prend du temps à s'exécuter
         }
     }
     function callback2(articleTab, index)

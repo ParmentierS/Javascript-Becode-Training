@@ -42,10 +42,9 @@
             //*/
             //redirect: 'follow', // manual, *follow, error
             //referrer: 'no-referrer', // no-referrer, *client
-            body: JSON.stringify({id: parseInt(idHero)}) //  heroes type must match "Content-Type" header
         }
         console.log(dataObject);
-        const req2 =new Request("http://localhost:3000/heroes/"+idHero,dataObject);
+        const req2 =new Request("http://localhost:3000/heroes/" + idHero,dataObject);
         console.log(req2);
         await fetch(req2)
             .then(data => console.log(JSON.stringify(data))) // JSON-string from `response.json()` call

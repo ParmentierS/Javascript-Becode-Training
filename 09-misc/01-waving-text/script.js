@@ -96,6 +96,22 @@
     }
 
     //my own function that works for now
+    function createCSSSelector(selector, tabRules)
+    {
+        let styleSheetElement = document.createElement('style');
+        styleSheetElement.type = 'text/css';
+        console.log(styleSheetElement);
+        console.log(styleSheetElement.sheet);
+        document.getElementsByTagName('head')[0].appendChild(styleSheetElement);
+        let stringRules="";
+        for(let index=0;index<tabRules.length;index++)
+        {
+            stringRules+= tabRules[index]+";";
+        }
+        styleSheetElement.sheet.insertRule(selector + '{' + stringRules+ '}',index);
+        console.log(styleSheetElement);
+
+    } 
     function createCSSSelector2 (selector, style)
     {
         let styleSheetElement = document.createElement('style');
@@ -107,8 +123,14 @@
         console.log(styleSheetElement);
 
     } 
+    const CSSObject=
+    {
+        font_size:"50px";
+
+    }
     async function main(waveText="", timer=500)
     {
+
         createCSSSelector2('.taille5', 'font-size:50px');
         createCSSSelector2('.taille4', 'font-size:40px');
         createCSSSelector2('.taille3', 'font-size:30px');
